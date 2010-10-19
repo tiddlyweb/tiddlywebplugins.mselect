@@ -1,6 +1,9 @@
 from tiddlyweb.model.tiddler import Tiddler
 from tiddlyweb.config import config
 from tiddlywebplugins.mselect import init
+from tiddlyweb.filters import FilterError
+
+import py.test
 
 
 tiddlers = [Tiddler('1'), Tiddler('c'), Tiddler('a'), Tiddler('b')]
@@ -14,6 +17,9 @@ def test_simple_mselect():
     selected_tiddlers = test_mselect('title:1,title:c', tiddlers)
     assert ['1','c'] == [tiddler.title for tiddler in selected_tiddlers]
 
+def test_bad_format():
+    selected_tiddlers = test_mselect('title:1,funk', tiddlers)
+    py.test.raises(FilterError, 'list(selected_tiddlers)')
 
 def test_mselect_separator():
     selected_tiddlers = test_mselect('title:1|title:c', tiddlers)

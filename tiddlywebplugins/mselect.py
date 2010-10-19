@@ -11,7 +11,7 @@ Install by adding 'tiddlywebplugins.mselect' to 'system_plugins'
 in tiddlywebconfig.py.
 """
 
-from tiddlyweb.filters import FILTER_PARSERS
+from tiddlyweb.filters import FILTER_PARSERS, FilterError
 from tiddlyweb.filters.select import select_parse
 
 
@@ -39,7 +39,10 @@ def init(config):
             separator = config.get('mselect.separator', MSELECT_SEPARATOR)
 
         commands = command.split(separator)
-        parsed_commands = [select_parse(command) for command in commands]
+        try:
+            parsed_commands = [select_parse(command) for command in commands]
+        except ValueError, exc:
+            raise FilterError('malformed filter: %s' % exc)
 
         # unwind the (probably) generator so we can use it multiple times
         entities = list(entities)

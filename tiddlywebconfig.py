@@ -1,3 +1,4 @@
+import mangler
 config = {
-        'system_plugins': ['mselect'],
+        'system_plugins': ['tiddlywebplugins.mselect'],
         }
