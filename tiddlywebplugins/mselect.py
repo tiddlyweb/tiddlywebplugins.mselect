@@ -49,7 +49,7 @@ def init(config):
         seen_results = []
 
         for func in parsed_commands:
-            for result in func(entities):
+            for result in func(entities, environ=environ):
                 if result not in seen_results:
                     yield result
 
