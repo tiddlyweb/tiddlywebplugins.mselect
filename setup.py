@@ -18,4 +18,5 @@ setup(
         install_requires = ['setuptools', 'tiddlyweb'],
         include_package_data = True,
         zip_safe=False,
+        license = 'BSD'
         )

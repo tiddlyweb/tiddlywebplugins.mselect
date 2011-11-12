@@ -7,7 +7,3 @@ published and then sort by modified time:
     mselect=tag:blog,tag:published;sort=-modified
 
 For more information on TiddlyWeb see http://tiddlyweb.com
-
-This code is licensed under the same terms as TiddlyWeb itself.
-
-Copyright 2009 Chris Dent.
